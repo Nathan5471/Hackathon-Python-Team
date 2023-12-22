@@ -11,6 +11,9 @@ def gradient(canvas, color1, color2, width):
         color = '#%02x%02x%02x' % (round(r), round(g), round(b))
         canvas.create_line(0, i, width, i, fill=color)
 
+def buttonColor(event, button, color):
+    button.config(bg=color)
+
 window = tk.Tk()
 window.title("Elearning")
 window.geometry("600x400")
@@ -20,7 +23,10 @@ canvas.place(x=0, y=0)
 
 topBar = tk.Canvas(window, width=600, height=50)
 topBar.place(x=0, y=0)
-usernameButton = tk.Button(topBar, text="Username", width=10, height=1)
+usernameButton = tk.Button(topBar, text="Username", width=10, height=1, background="#c1b4f2")
+usernameButton.configure(activebackground="#c1b4f2", activeforeground="white")
+usernameButton.bind("<Enter>", lambda event: buttonColor(event, usernameButton, "#c1b4f2"))
+usernameButton.bind("<Leave>", lambda event: buttonColor(event, usernameButton, "#c1b4f2"))
 usernameButton.place(x=0, y=0)
 
 
