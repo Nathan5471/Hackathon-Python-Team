@@ -16,7 +16,10 @@ window.title("Elearning")
 window.geometry("600x400")
 
 canvas = tk.Canvas(window, width=600, height=400)
-canvas.pack()
+canvas.place(x=0, y=0)
+
+topBar = tk.Frame(window, bg='#1EAE98', width=600, height=50)
+topBar.place(x=0, y=0)
 
 window.update()  # needed for winfo_height() to work
 gradient(canvas, '#D8B5FF', '#1EAE98', 600)
