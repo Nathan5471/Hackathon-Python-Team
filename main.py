@@ -2,4 +2,6 @@ import tkinter as tk
 
 window = tk.Tk()
 window.title("Elearning")
-window.geometry("400x400")
+window.geometry("600x400")
+
+window.mainloop()
