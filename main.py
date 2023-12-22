@@ -15,6 +15,6 @@ canvas = tk.Canvas(window, width=600, height=400)
 canvas.pack()
 
 window.update()  # needed for winfo_height() to work
-gradient(canvas, '#000000', '#ffffff', 600)
+gradient(canvas, '#D8B5FF', '#1EAE98', 600)
 
 window.mainloop()
