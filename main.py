@@ -9,8 +9,6 @@ def gradient(canvas, color1, color2, width):
         g = g1 * (1 - (i / canvasHeight)) + g2 * (i / canvasHeight)
         b = b1 * (1 - (i / canvasHeight)) + b2 * (i / canvasHeight)
         color = '#%02x%02x%02x' % (round(r), round(g), round(b))
-        if i == 50:
-            print(color)
         canvas.create_line(0, i, width, i, fill=color)
 
 window = tk.Tk()
@@ -22,6 +20,9 @@ canvas.place(x=0, y=0)
 
 topBar = tk.Canvas(window, width=600, height=50)
 topBar.place(x=0, y=0)
+usernameButton = tk.Button(topBar, text="Username", width=10, height=1)
+usernameButton.place(x=0, y=0)
+
 
 window.update()  # needed for winfo_height() to work
 gradient(canvas, '#D8B5FF', '#1EAE98', 600)
