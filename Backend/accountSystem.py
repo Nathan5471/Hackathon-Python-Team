@@ -102,3 +102,60 @@ def changeAccountType(username, newAccountType):
     cursor.execute('UPDATE accounts SET accountType=? WHERE username=?', (newAccountType, username))
     connection.commit()
     connection.close()
+    
+def enrollInCourse(courseName, username, password):
+    connection = sql.connect('accountSystem.db')
+    cursor = connection.cursor()
+    cursor.execute('SELECT * FROM accounts WHERE username=?', (username,))
+    account = cursor.fetchone()
+    connection.close()
+    if account == None:
+        return False
+    salt = account[4]
+    hashedPassword = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), salt, 100000)
+    if hashedPassword == account[3]:
+        connection = sql.connect('accountSystem.db')
+        cursor = connection.cursor()
+        cursor.execute('INSERT INTO enrollments VALUES (?, ?)', (courseName, username))
+        connection.commit()
+        connection.close()
+        return True
+    else:
+        return False
+    
+def unenrollInCourse(courseName, username, password):
+    connection = sql.connect('accountSystem.db')
+    cursor = connection.cursor()
+    cursor.execute('SELECT * FROM accounts WHERE username=?', (username,))
+    account = cursor.fetchone()
+    connection.close()
+    if account == None:
+        return False
+    salt = account[4]
+    hashedPassword = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), salt, 100000)
+    if hashedPassword == account[3]:
+        connection = sql.connect('accountSystem.db')
+        cursor = connection.cursor()
+        cursor.execute('DELETE FROM enrollments WHERE courseName=? AND username=?', (courseName, username))
+        connection.commit()
+        connection.close()
+        return True
+    else:
+        return False
+    
+def getEnrolledCourses(username):
+    connection = sql.connect('accountSystem.db')
+    cursor = connection.cursor()
+    cursor.execute('SELECT * FROM enrollments WHERE username=?', (username,))
+    courses = cursor.fetchall()
+    connection.close()
+    return courses
+
+def getEnrolledUsers(courseName):
+    connection = sql.connect('accountSystem.db')
+    cursor = connection.cursor()
+    cursor.execute('SELECT * FROM enrollments WHERE courseName=?', (courseName,))
+    users = cursor.fetchall()
+    connection.close()
+    return users
+
