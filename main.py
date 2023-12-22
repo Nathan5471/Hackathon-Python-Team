@@ -23,9 +23,9 @@ canvas.place(x=0, y=0)
 
 topBar = tk.Canvas(window, width=600, height=50)
 topBar.place(x=0, y=0)
-usernameButton = tk.Button(topBar, text="Username", width=10, height=1, background="#c1b4f2")
+usernameButton = tk.Button(topBar, text="Username", relief=tk.FLAT, width=10, height=1, background="#c1b4f2")
 usernameButton.configure(activebackground="#c1b4f2", activeforeground="white")
-usernameButton.bind("<Enter>", lambda event: buttonColor(event, usernameButton, "#c1b4f2"))
+usernameButton.bind("<Enter>", lambda event: buttonColor(event, usernameButton, "#dbd4f7"))
 usernameButton.bind("<Leave>", lambda event: buttonColor(event, usernameButton, "#c1b4f2"))
 usernameButton.place(x=0, y=0)
 
