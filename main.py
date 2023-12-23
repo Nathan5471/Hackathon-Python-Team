@@ -201,6 +201,7 @@ userCreateButton = tk.Button(
     background="#72b1c7",
     foreground="white",
     font=("Arial", 10),
+    command=userSignup,
 )
 userCreateButton.configure(activebackground="#88bccf", activeforeground="white")
 userCreateButton.bind(
