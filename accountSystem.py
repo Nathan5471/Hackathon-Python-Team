@@ -19,6 +19,7 @@ def createAccount(username, email, password):
     )
     connection.commit()
     connection.close()
+    return True
 
 
 def checkPassword(password):
