@@ -22,6 +22,11 @@ def usernameButtonPressed():
         usernameMenu.place_forget()
     else:
         usernameMenu.place(x=0, y=50)
+        
+
+def loginButtonPressed():
+    usernameMenu.place_forget()
+    loginMenu.place(x=100, y=50)
 
 
 window = tk.Tk()
@@ -56,18 +61,44 @@ usernameButton.place(x=0, y=0)
 # The account management menu
 # Accesed by pressing the username button
 usernameMenu = tk.Canvas(window, width=100, height=100)
-loginButton = tk.Button(usernameMenu, text="Login", relief=tk.FLAT, width=10, height=1)
+loginButton = tk.Button(
+    usernameMenu, text="Login", relief=tk.FLAT, width=10, height=1, background="#c1b4f2", command=loginButtonPressed
+)
 loginButton.configure(activebackground="#c1b4f2", activeforeground="white")
 loginButton.bind("<Enter>", lambda event: buttonColor(event, loginButton, "#dbd4f7"))
 loginButton.bind("<Leave>", lambda event: buttonColor(event, loginButton, "#c1b4f2"))
 loginButton.place(x=0, y=0)
 signupButton = tk.Button(
-    usernameMenu, text="Signup", relief=tk.FLAT, width=10, height=1
+    usernameMenu,
+    text="Signup",
+    relief=tk.FLAT,
+    width=10,
+    height=1,
+    background="#c1b4f2",
 )
 signupButton.configure(activebackground="#c1b4f2", activeforeground="white")
 signupButton.bind("<Enter>", lambda event: buttonColor(event, signupButton, "#dbd4f7"))
 signupButton.bind("<Leave>", lambda event: buttonColor(event, signupButton, "#c1b4f2"))
 signupButton.place(x=0, y=25)
+
+# The login menu
+# Accessed by pressing the login button
+loginMenu = tk.Canvas(window, width=100, height=100)
+usernameLabel = tk.Label(loginMenu, text="Username")
+usernameLabel.place(x=0, y=0)
+usernameEntry = tk.Entry(loginMenu)
+usernameEntry.place(x=0, y=20)
+passwordLabel = tk.Label(loginMenu, text="Password")
+passwordLabel.place(x=0, y=50)
+passwordEntry = tk.Entry(loginMenu)
+passwordEntry.place(x=0, y=70)
+userLoginButton = tk.Button(
+    loginMenu, text="Login", relief=tk.FLAT, width=10, height=1, background="#c1b4f2"
+)
+userLoginButton.configure(activebackground="#c1b4f2", activeforeground="white")
+userLoginButton.bind("<Enter>", lambda event: buttonColor(event, userLoginButton, "#dbd4f7"))
+userLoginButton.bind("<Leave>", lambda event: buttonColor(event, userLoginButton, "#c1b4f2"))
+userLoginButton.place(x=0, y=100)
 
 # Manages the gradients
 window.update()  # needed for winfo_height() to work
