@@ -98,7 +98,9 @@ canvas = tk.Canvas(window, width=600, height=400)
 canvas.place(x=0, y=0)
 courseList = csys.getCourseList()
 for course in courseList:
-    image = ImageTk.PhotoImage(csys.getCourseImage(course).resize((100, 100)))
+    image = ImageTk.PhotoImage(Image.open(csys.getCourseImage(course).resize((100, 100))))
+    imageLabel = tk.Label(canvas, image=image)
+    imageLabel.place(x=0, y=70)
     
 
 # The top bar for the application
