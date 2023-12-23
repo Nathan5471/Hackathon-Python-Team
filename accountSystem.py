@@ -5,6 +5,8 @@ import string
 
 
 def createAccount(username, email, accountType, password):
+    if checkPassword(password)[5] < 3:
+        return False
     salt = os.urandom(32)
     hashedPassword = hashlib.pbkdf2_hmac(
         "sha256", password.encode("utf-8"), salt, 100000
