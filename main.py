@@ -90,12 +90,16 @@ window = tk.Tk()
 window.title("Elearning")
 window.geometry("600x400")
 
+xImage = ImageTk.PhotoImage(Image.open("assets/xIcon.png").resize((10, 10)))
+checkImage = ImageTk.PhotoImage(Image.open("assets/checkIcon.png").resize((10, 10)))
+
 # Creates the main page for the application
 canvas = tk.Canvas(window, width=600, height=400)
 canvas.place(x=0, y=0)
-
-xImage = ImageTk.PhotoImage(Image.open("assets/xIcon.png").resize((10, 10)))
-checkImage = ImageTk.PhotoImage(Image.open("assets/checkIcon.png").resize((10, 10)))
+courseList = csys.getCourseList()
+for course in courseList:
+    image = ImageTk.PhotoImage(csys.getCourseImage(course).resize((100, 100)))
+    
 
 # The top bar for the application
 topBar = tk.Canvas(window, width=600, height=35)

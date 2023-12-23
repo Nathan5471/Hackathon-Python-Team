@@ -31,3 +31,18 @@ def getCourse(courseName):
     connection.close()
     return course
 
+def getCourseList():
+    connection = sql.connect('courseSystem.db')
+    cursor = connection.cursor()
+    cursor.execute('SELECT courseName FROM courses')
+    courseList = cursor.fetchall()
+    connection.close()
+    return courseList
+
+def getCourseImage(courseName):
+    connection = sql.connect('courseSystem.db')
+    cursor = connection.cursor()
+    cursor.execute('SELECT courseImage FROM courses WHERE courseName=?', (courseName,))
+    courseImage = cursor.fetchone()
+    connection.close()
+    return courseImage
