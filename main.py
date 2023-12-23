@@ -1,6 +1,5 @@
 import tkinter as tk
-from backend import accountSystem as asys
-from backend import courseSystem as csys
+from backend import *
 
 def gradient(canvas, color1, color2, width):
     r1, g1, b1 = int(color1[1:3], 16), int(color1[3:5], 16), int(color1[5:7], 16)
@@ -17,6 +16,8 @@ def gradient(canvas, color1, color2, width):
 def buttonColor(event, button, color):
     button.config(bg=color)
 
+def userLogin():
+    loginStatus = asys.login(usernameEntry.get(), passwordEntry.get())
 
 def usernameButtonPressed():
     if usernameMenu.winfo_ismapped():
