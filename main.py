@@ -31,7 +31,7 @@ canvas.place(x=0, y=0)
 #The top bar for the application
 topBar = tk.Canvas(window, width=600, height=50)
 topBar.place(x=0, y=0)
-usernameButton = tk.Button(topBar, text="Username", relief=tk.FLAT, width=10, height=1, background="#c1b4f2")
+usernameButton = tk.Button(topBar, text="Username", relief=tk.FLAT, width=10, height=1, background="#c1b4f2", command=usernameButtonPressed)
 usernameButton.configure(activebackground="#c1b4f2", activeforeground="white")
 usernameButton.bind("<Enter>", lambda event: buttonColor(event, usernameButton, "#dbd4f7"))
 usernameButton.bind("<Leave>", lambda event: buttonColor(event, usernameButton, "#c1b4f2"))
@@ -40,7 +40,6 @@ usernameButton.place(x=0, y=0)
 #The account management menu
 #Accesed by pressing the username button
 usernameMenu = tk.Canvas(window, width=100, height=100)
-usernameMenu.place(x=0, y=50)
 
 #Manages the gradients
 window.update()  # needed for winfo_height() to work
