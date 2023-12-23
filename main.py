@@ -30,7 +30,7 @@ def usernameButtonPressed():
 
 def loginButtonPressed():
     usernameMenu.place_forget()
-    loginMenu.place(x=0, y=50)
+    loginMenu.place(x=2, y=50)
 
 
 window = tk.Tk()
@@ -89,20 +89,20 @@ signupButton.place(x=0, y=25)
 # Accessed by pressing the login button
 loginMenu = tk.Canvas(canvas, width=100, height=120, background="#72b1c7")
 usernameLabel = tk.Label(loginMenu, text="Username", background="#72b1c7", foreground="white")
-usernameLabel.place(x=0, y=0)
-usernameEntry = tk.Entry(loginMenu, background="#88bccf")
-usernameEntry.place(x=0, y=20)
+usernameLabel.place(x=5, y=3)
+usernameEntry = tk.Entry(loginMenu, background="#88bccf", width=15)
+usernameEntry.place(x=5, y=23)
 passwordLabel = tk.Label(loginMenu, text="Password", background="#72b1c7", foreground="white")
-passwordLabel.place(x=0, y=50)
-passwordEntry = tk.Entry(loginMenu, background="#88bccf")
-passwordEntry.place(x=0, y=70)
+passwordLabel.place(x=5, y=50)
+passwordEntry = tk.Entry(loginMenu, background="#88bccf", width=15)
+passwordEntry.place(x=5, y=70)
 userLoginButton = tk.Button(
     loginMenu, text="Login", relief=tk.FLAT, width=10, height=1, background="#72b1c7", foreground="White"
 )
 userLoginButton.configure(activebackground="#88bccf", activeforeground="white")
 userLoginButton.bind("<Enter>", lambda event: buttonColor(event, userLoginButton, "#88bccf"))
 userLoginButton.bind("<Leave>", lambda event: buttonColor(event, userLoginButton, "#72b1c7"))
-userLoginButton.place(x=0, y=100)
+userLoginButton.place(x=12, y=93)
 
 # Manages the gradients
 window.update()  # needed for winfo_height() to work
