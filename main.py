@@ -244,6 +244,7 @@ userLoginButtonLogin = tk.Button(
     height=1,
     background="#72b1c7",
     foreground="white",
+    command=userLogin,
 )
 userLoginButtonLogin.configure(activebackground="#88bccf", activeforeground="white")
 userLoginButtonLogin.bind(
