@@ -22,7 +22,7 @@ def createAccount(username, email, password):
 
 
 def checkPassword(password):
-    minLength = 12
+    minLength = 8
     maxLength = 36
     strength = 0
     lowercaseLetters = string.ascii_lowercase
