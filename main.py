@@ -19,6 +19,10 @@ def buttonColor(event, button, color):
     button.config(bg=color)
 
 
+def userSignup():
+    asys.createAccount()
+
+
 def userLogin():
     loginStatus = asys.login(usernameEntry.get(), passwordEntry.get())
     print(loginStatus)
