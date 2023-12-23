@@ -26,7 +26,7 @@ def usernameButtonPressed():
 
 def loginButtonPressed():
     usernameMenu.place_forget()
-    loginMenu.place(x=100, y=50)
+    loginMenu.place(x=0, y=50)
 
 
 window = tk.Tk()
@@ -56,7 +56,7 @@ usernameButton.bind(
 usernameButton.bind(
     "<Leave>", lambda event: buttonColor(event, usernameButton, "#c1b4f2")
 )
-usernameButton.place(x=5, y=5)
+usernameButton.place(x=5, y=7)
 
 # The account management menu
 # Accesed by pressing the username button
@@ -83,7 +83,7 @@ signupButton.place(x=0, y=25)
 
 # The login menu
 # Accessed by pressing the login button
-loginMenu = tk.Canvas(window, width=100, height=100)
+loginMenu = tk.Canvas(canvas, width=100, height=100)
 usernameLabel = tk.Label(loginMenu, text="Username")
 usernameLabel.place(x=0, y=0)
 usernameEntry = tk.Entry(loginMenu)
