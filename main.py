@@ -42,7 +42,10 @@ def loop_check_password(password, password_entry, image_list):
 
 
 def userSignup():
-    asys.createAccount()
+    username = usernameEntryCreate.get()
+    email= emailEntryCreate.get()
+    password = passwordEntryCreate.get()
+    asys.createAccount(username, email, password)
 
 
 def userLogin():

@@ -4,7 +4,7 @@ import os
 import string
 
 
-def createAccount(username, email, accountType, password):
+def createAccount(username, email, password):
     if checkPassword(password)[5] < 3:
         return False
     salt = os.urandom(32)
@@ -14,8 +14,8 @@ def createAccount(username, email, accountType, password):
     connection = sql.connect("accountSystem.db")
     cursor = connection.cursor()
     cursor.execute(
-        "INSERT INTO accounts VALUES (?, ?, ?, ?, ?)",
-        (username, email, accountType, hashedPassword, salt),
+        "INSERT INTO accounts VALUES (?, ?, ?, ?)",
+        (username, email, hashedPassword, salt),
     )
     connection.commit()
     connection.close()
