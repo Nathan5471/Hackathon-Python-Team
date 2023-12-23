@@ -19,6 +19,7 @@ def buttonColor(event, button, color):
 
 def userLogin():
     loginStatus = asys.login(usernameEntry.get(), passwordEntry.get())
+    print(loginStatus)
 
 def usernameButtonPressed():
     if usernameMenu.winfo_ismapped():
