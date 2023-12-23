@@ -43,9 +43,14 @@ def loop_check_password(password, passwordEntry, imageList):
 
 def userSignup():
     username = usernameEntryCreate.get()
-    email= emailEntryCreate.get()
+    email = emailEntryCreate.get()
     password = passwordEntryCreate.get()
-    asys.createAccount(username, email, password)
+    createStatus = asys.createAccount(username, email, password)
+    if createStatus:
+        signupMenu.place_forget()
+        canvas.place(x=0, y=0)
+        usernameButton.config(text=username)
+        usernameButton.place(x=5, y=7)
 
 
 def userLogin():
