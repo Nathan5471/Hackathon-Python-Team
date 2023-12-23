@@ -72,11 +72,11 @@ def login(username, password):
     connection.close()
     if account == None:
         return False
-    salt = account[4]
+    salt = account[3]
     hashedPassword = hashlib.pbkdf2_hmac(
         "sha256", password.encode("utf-8"), salt, 100000
     )
-    if hashedPassword == account[3]:
+    if hashedPassword == account[2]:
         return True
     else:
         return False
@@ -90,11 +90,11 @@ def checkAccount(username, password):
     connection.close()
     if account == None:
         return False
-    salt = account[4]
+    salt = account[3]
     hashedPassword = hashlib.pbkdf2_hmac(
         "sha256", password.encode("utf-8"), salt, 100000
     )
-    if hashedPassword == account[3]:
+    if hashedPassword == account[2]:
         return True
     else:
         return False
@@ -108,11 +108,11 @@ def changePassword(username, oldPassword, newPassword):
     connection.close()
     if account == None:
         return False
-    salt = account[4]
+    salt = account[3]
     hashedPassword = hashlib.pbkdf2_hmac(
         "sha256", oldPassword.encode("utf-8"), salt, 100000
     )
-    if hashedPassword == account[3]:
+    if hashedPassword == account[2]:
         salt = os.urandom(32)
         hashedPassword = hashlib.pbkdf2_hmac(
             "sha256", newPassword.encode("utf-8"), salt, 100000
@@ -138,11 +138,11 @@ def changeEmail(username, password, newEmail):
     connection.close()
     if account == None:
         return False
-    salt = account[4]
+    salt = account[3]
     hashedPassword = hashlib.pbkdf2_hmac(
         "sha256", password.encode("utf-8"), salt, 100000
     )
-    if hashedPassword == account[3]:
+    if hashedPassword == account[2]:
         connection = sql.connect("accountSystem.db")
         cursor = connection.cursor()
         cursor.execute(
@@ -167,7 +167,7 @@ def deleteAccount(username, password):
     hashedPassword = hashlib.pbkdf2_hmac(
         "sha256", password.encode("utf-8"), salt, 100000
     )
-    if hashedPassword == account[3]:
+    if hashedPassword == account[2]:
         connection = sql.connect("accountSystem.db")
         cursor = connection.cursor()
         cursor.execute("DELETE FROM accounts WHERE username=?", (username,))
@@ -205,11 +205,11 @@ def enrollInCourse(courseName, username, password):
     connection.close()
     if account == None:
         return False
-    salt = account[4]
+    salt = account[3]
     hashedPassword = hashlib.pbkdf2_hmac(
         "sha256", password.encode("utf-8"), salt, 100000
     )
-    if hashedPassword == account[3]:
+    if hashedPassword == account[2]:
         connection = sql.connect("accountSystem.db")
         cursor = connection.cursor()
         cursor.execute("INSERT INTO enrollments VALUES (?, ?)", (courseName, username))
@@ -228,11 +228,11 @@ def unenrollInCourse(courseName, username, password):
     connection.close()
     if account == None:
         return False
-    salt = account[4]
+    salt = account[3]
     hashedPassword = hashlib.pbkdf2_hmac(
         "sha256", password.encode("utf-8"), salt, 100000
     )
-    if hashedPassword == account[3]:
+    if hashedPassword == account[2]:
         connection = sql.connect("accountSystem.db")
         cursor = connection.cursor()
         cursor.execute(
