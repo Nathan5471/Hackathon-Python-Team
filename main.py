@@ -71,6 +71,9 @@ def signupButtonPressed():
     canvas.place_forget()
     signupMenu.place(x=0, y=0)
     gradient(signupMenu, "#D8B5FF", "#1EAE98", 600)
+    window.update()
+    loop_check_password("", passwordEntryCreate, passwordRequirementImageLabelList)
+
 
 
 def loginButtonPressed():
