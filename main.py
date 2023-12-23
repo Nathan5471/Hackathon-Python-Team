@@ -38,7 +38,7 @@ canvas = tk.Canvas(window, width=600, height=400)
 canvas.place(x=0, y=0)
 
 # The top bar for the application
-topBar = tk.Canvas(window, width=600, height=50)
+topBar = tk.Canvas(window, width=600, height=35)
 topBar.place(x=0, y=0)
 usernameButton = tk.Button(
     topBar,
@@ -56,7 +56,7 @@ usernameButton.bind(
 usernameButton.bind(
     "<Leave>", lambda event: buttonColor(event, usernameButton, "#c1b4f2")
 )
-usernameButton.place(x=0, y=0)
+usernameButton.place(x=5, y=5)
 
 # The account management menu
 # Accesed by pressing the username button
