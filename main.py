@@ -87,21 +87,21 @@ signupButton.place(x=0, y=25)
 
 # The login menu
 # Accessed by pressing the login button
-loginMenu = tk.Canvas(canvas, width=100, height=100)
-usernameLabel = tk.Label(loginMenu, text="Username")
+loginMenu = tk.Canvas(canvas, width=100, height=120, background="#72b1c7")
+usernameLabel = tk.Label(loginMenu, text="Username", background="#72b1c7", foreground="white")
 usernameLabel.place(x=0, y=0)
-usernameEntry = tk.Entry(loginMenu)
+usernameEntry = tk.Entry(loginMenu, background="#88bccf")
 usernameEntry.place(x=0, y=20)
-passwordLabel = tk.Label(loginMenu, text="Password")
+passwordLabel = tk.Label(loginMenu, text="Password", background="#72b1c7", foreground="white")
 passwordLabel.place(x=0, y=50)
-passwordEntry = tk.Entry(loginMenu)
+passwordEntry = tk.Entry(loginMenu, background="#88bccf")
 passwordEntry.place(x=0, y=70)
 userLoginButton = tk.Button(
-    loginMenu, text="Login", relief=tk.FLAT, width=10, height=1, background="#c1b4f2"
+    loginMenu, text="Login", relief=tk.FLAT, width=10, height=1, background="#72b1c7", foreground="White"
 )
-userLoginButton.configure(activebackground="#c1b4f2", activeforeground="white")
-userLoginButton.bind("<Enter>", lambda event: buttonColor(event, userLoginButton, "#dbd4f7"))
-userLoginButton.bind("<Leave>", lambda event: buttonColor(event, userLoginButton, "#c1b4f2"))
+userLoginButton.configure(activebackground="#88bccf", activeforeground="white")
+userLoginButton.bind("<Enter>", lambda event: buttonColor(event, userLoginButton, "#88bccf"))
+userLoginButton.bind("<Leave>", lambda event: buttonColor(event, userLoginButton, "#72b1c7"))
 userLoginButton.place(x=0, y=100)
 
 # Manages the gradients
