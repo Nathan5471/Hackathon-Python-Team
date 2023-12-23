@@ -23,22 +23,22 @@ def buttonColor(event, button, color):
     button.config(bg=color)
 
 
-def loop_check_password(password, password_entry, image_list):
-    if password_entry.winfo_ismapped():
-        if password == password_entry.get():
+def loop_check_password(password, passwordEntry, imageList):
+    if passwordEntry.winfo_ismapped():
+        if password == passwordEntry.get():
             pass
         else:
-            password = password_entry.get()
+            password = passwordEntry.get()
             result = asys.checkPassword(password)
-            # for i in range(5):
-            # image =  if result[i] else
-            # image_list[i].configure(image=image)
-        # window.after(
-        # 100,
-        # lambda password=password, password_entry=password_entry, image_list=image_list: loop_check_password(
-        # password, password_entry, image_list
-        # ),
-        # )
+            for i in range(5):
+                image = checkImage if result[i] else xImage
+                imageList[i].configure(image=image)
+        window.after(
+        100,
+        lambda password=password, password_entry=passwordEntry, image_list=imageList: loop_check_password(
+            password, password_entry, image_list
+        ),
+        )
 
 
 def userSignup():
