@@ -1,6 +1,7 @@
 import sqlite3 as sql
 import hashlib
 import os
+import string
 
 
 def createAccount(username, email, accountType, password):
@@ -16,6 +17,49 @@ def createAccount(username, email, accountType, password):
     )
     connection.commit()
     connection.close()
+
+
+def checkPassword(password):
+    minLength = 12
+    maxLength = 36
+    strength = 0
+    lowercaseLetters = string.ascii_lowercase
+    uppercaseLetters = string.ascii_uppercase
+    numbers = string.digits
+    specialCharacters = string.punctuation
+    lengthRequirements = False
+    lowercaseRequirements = False
+    uppercaseRequirements = False
+    numberRequirements = False
+    specialCharacterRequirements = False
+    if len(password) >= minLength and len(password) <= maxLength:
+        strength += 1
+        lengthRequirements = True
+    for char in password:
+        if char in lowercaseLetters:
+            lowercaseRequirements = True
+        if char in uppercaseLetters:
+            uppercaseRequirements = True
+        if char in numbers:
+            numberRequirements = True
+        if char in specialCharacters:
+            specialCharacterRequirements = True
+    if lowercaseRequirements:
+        strength += 1
+    if uppercaseRequirements:
+        strength += 1
+    if numberRequirements:
+        strength += 1
+    if specialCharacterRequirements:
+        strength += 1
+    return [
+        lengthRequirements,
+        numberRequirements,
+        lowercaseRequirements,
+        uppercaseRequirements,
+        specialCharacterRequirements,
+        strength,
+    ]
 
 
 def login(username, password):

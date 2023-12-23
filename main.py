@@ -1,6 +1,10 @@
 import tkinter as tk
 import accountSystem as asys
 import courseSystem as csys
+from PIL import Image, ImageTk
+
+username = ""
+password = ""
 
 
 def gradient(canvas, color1, color2, width):
@@ -19,13 +23,37 @@ def buttonColor(event, button, color):
     button.config(bg=color)
 
 
+def loop_check_password(password, password_entry, image_list):
+    if password_entry.winfo_ismapped():
+        if password == password_entry.get():
+            pass
+        else:
+            password = password_entry.get()
+            result = asys.checkPassword(password)
+            # for i in range(5):
+            # image =  if result[i] else
+            # image_list[i].configure(image=image)
+        # window.after(
+        # 100,
+        # lambda password=password, password_entry=password_entry, image_list=image_list: loop_check_password(
+        # password, password_entry, image_list
+        # ),
+        # )
+
+
 def userSignup():
     asys.createAccount()
 
 
 def userLogin():
-    loginStatus = asys.login(usernameEntry.get(), passwordEntry.get())
-    print(loginStatus)
+    username = usernameEntryLogin.get()
+    password = passwordEntryLogin.get()
+    loginStatus = asys.login(username, password)
+    if loginStatus == True:
+        loginMenu.place_forget()
+        usernameMenu.place_forget()
+        usernameButton.config(text=username)
+        usernameButton.place(x=5, y=7)
 
 
 def usernameButtonPressed():
@@ -33,6 +61,13 @@ def usernameButtonPressed():
         usernameMenu.place_forget()
     else:
         usernameMenu.place(x=2, y=50)
+
+
+def signupButtonPressed():
+    usernameMenu.place_forget()
+    canvas.place_forget()
+    signupMenu.place(x=0, y=0)
+    gradient(signupMenu, "#D8B5FF", "#1EAE98", 600)
 
 
 def loginButtonPressed():
@@ -47,6 +82,9 @@ window.geometry("600x400")
 # Creates the main page for the application
 canvas = tk.Canvas(window, width=600, height=400)
 canvas.place(x=0, y=0)
+
+xImage = ImageTk.PhotoImage(Image.open("assets/xIcon.png").resize((10, 10)))
+checkImage = ImageTk.PhotoImage(Image.open("assets/checkIcon.png").resize((10, 10)))
 
 # The top bar for the application
 topBar = tk.Canvas(window, width=600, height=35)
@@ -95,28 +133,98 @@ signupButton = tk.Button(
     height=1,
     background="#72b1c7",
     foreground="white",
+    command=signupButtonPressed,
 )
 signupButton.configure(activebackground="#88bccf", activeforeground="white")
 signupButton.bind("<Enter>", lambda event: buttonColor(event, signupButton, "#88bccf"))
 signupButton.bind("<Leave>", lambda event: buttonColor(event, signupButton, "#72b1c7"))
 signupButton.place(x=10, y=55)
 
+# The signup menu
+# Accessed by pressing the signup button
+signupMenu = tk.Canvas(window, width=600, height=400, background="#72b1c7")
+usernameLabelCreate = tk.Label(
+    signupMenu, text="Username", background="#72b1c7", font=("Arial", 20)
+)
+usernameLabelCreate.place(x=245, y=25)
+usernameEntryCreate = tk.Entry(
+    signupMenu, background="#88bccf", width=15, font=("Arial", 14)
+)
+usernameEntryCreate.place(x=225, y=65)
+emailLabelCreate = tk.Label(
+    signupMenu, text="Email", background="#72b1c7", font=("Arial", 20)
+)
+emailLabelCreate.place(x=265, y=100)
+emailEntryCreate = tk.Entry(
+    signupMenu, background="#88bccf", width=15, font=("Arial", 14)
+)
+emailEntryCreate.place(x=225, y=140)
+passwordLabelCreate = tk.Label(
+    signupMenu, text="Password", background="#72b1c7", font=("Arial", 20)
+)
+passwordLabelCreate.place(x=245, y=175)
+passwordEntryCreate = tk.Entry(
+    signupMenu, background="#88bccf", width=15, font=("Arial", 14)
+)
+passwordEntryCreate.place(x=225, y=215)
+passwordRequirements = [
+    "Minimum 8 characters",
+    "At least 1 number",
+    "At least 1 lowercase letter",
+    "At least 1 uppercase letter",
+    "At least 1 special character",
+]
+previousY = 250
+passwordRequirementImageLabelList = []
+for passwordRequirement in passwordRequirements:
+    passwordRequirementLabel = tk.Label(
+        signupMenu, text=passwordRequirement, background="#72b1c7", font=("Arial", 10)
+    )
+    passwordRequirementLabel.place(x=250, y=previousY)
+    passwordRequirementImageLabel = tk.Label(signupMenu, image=xImage, background="#72b1c7")
+    passwordRequirementImageLabelList.append(passwordRequirementImageLabel)
+    i = len(passwordRequirementImageLabelList) - 1
+    passwordRequirementImageLabelList[i].place(x=225, y=previousY)
+    previousY += 20
+userCreateButton = tk.Button(
+    signupMenu,
+    text="Create",
+    relief=tk.FLAT,
+    width=20,
+    height=1,
+    background="#72b1c7",
+    foreground="white",
+    font=("Arial", 10),
+)
+userCreateButton.configure(activebackground="#88bccf", activeforeground="white")
+userCreateButton.bind(
+    "<Enter>", lambda event: buttonColor(event, userCreateButton, "#88bccf")
+)
+userCreateButton.bind(
+    "<Leave>", lambda event: buttonColor(event, userCreateButton, "#72b1c7")
+)
+userCreateButton.place(x=225, y=360)
+
+
 # The login menu
 # Accessed by pressing the login button
 loginMenu = tk.Canvas(canvas, width=100, height=120, background="#72b1c7")
-usernameLabel = tk.Label(
-    loginMenu, text="Username", background="#72b1c7", foreground="white"
+usernameLabelLogin = tk.Label(
+    loginMenu,
+    text="Username",
+    background="#72b1c7",
+    foreground="white",
 )
-usernameLabel.place(x=5, y=3)
-usernameEntry = tk.Entry(loginMenu, background="#88bccf", width=15)
-usernameEntry.place(x=5, y=23)
-passwordLabel = tk.Label(
+usernameLabelLogin.place(x=5, y=3)
+usernameEntryLogin = tk.Entry(loginMenu, background="#88bccf", width=15)
+usernameEntryLogin.place(x=5, y=23)
+passwordLabelLogin = tk.Label(
     loginMenu, text="Password", background="#72b1c7", foreground="white"
 )
-passwordLabel.place(x=5, y=50)
-passwordEntry = tk.Entry(loginMenu, background="#88bccf", width=15)
-passwordEntry.place(x=5, y=70)
-userLoginButton = tk.Button(
+passwordLabelLogin.place(x=5, y=50)
+passwordEntryLogin = tk.Entry(loginMenu, background="#88bccf", width=15)
+passwordEntryLogin.place(x=5, y=70)
+userLoginButtonLogin = tk.Button(
     loginMenu,
     text="Login",
     relief=tk.FLAT,
@@ -125,18 +233,19 @@ userLoginButton = tk.Button(
     background="#72b1c7",
     foreground="white",
 )
-userLoginButton.configure(activebackground="#88bccf", activeforeground="white")
-userLoginButton.bind(
-    "<Enter>", lambda event: buttonColor(event, userLoginButton, "#88bccf")
+userLoginButtonLogin.configure(activebackground="#88bccf", activeforeground="white")
+userLoginButtonLogin.bind(
+    "<Enter>", lambda event: buttonColor(event, userLoginButtonLogin, "#88bccf")
 )
-userLoginButton.bind(
-    "<Leave>", lambda event: buttonColor(event, userLoginButton, "#72b1c7")
+userLoginButtonLogin.bind(
+    "<Leave>", lambda event: buttonColor(event, userLoginButtonLogin, "#72b1c7")
 )
-userLoginButton.place(x=12, y=93)
+userLoginButtonLogin.place(x=12, y=93)
 
 # Manages the gradients
 window.update()  # needed for winfo_height() to work
 gradient(canvas, "#D8B5FF", "#1EAE98", 600)
 gradient(topBar, "#D8B5FF", "#c1b4f2", 600)
+
 
 window.mainloop()
